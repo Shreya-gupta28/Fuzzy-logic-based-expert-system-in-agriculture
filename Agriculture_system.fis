@@ -1,0 +1,55 @@
+[System]
+Name='Agriculture_system'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Weather_condition'
+Range=[0 1]
+NumMFs=3
+MF1='poor':'trapmf',[-0.375 -0.0417 0.3 0.4]
+MF2='Okay':'trapmf',[0.3 0.4 0.6 0.8]
+MF3='excellent':'trapmf',[0.6 0.8 1.042 1.375]
+
+[Input2]
+Name='Irrigation_cycle'
+Range=[0 7]
+NumMFs=3
+MF1='thin':'trapmf',[-2.625 -0.2917 2 3]
+MF2='average':'trapmf',[2 3 4 5]
+MF3='Thick':'trapmf',[4 5 7.292 9.625]
+
+[Input3]
+Name='Soil_quality'
+Range=[0 1]
+NumMFs=3
+MF1='poor':'trapmf',[-0.375 -0.04167 0.125 0.375]
+MF2='Okay':'trapmf',[0.125 0.375 0.625 0.875]
+MF3='Good':'trapmf',[0.625 0.875 1 13]
+
+[Output1]
+Name='Productivity'
+Range=[0 1]
+NumMFs=3
+MF1='poor':'trapmf',[-0.375 -0.04167 0.125 0.4583]
+MF2='average':'trapmf',[0.125 0.4583 0.5417 0.875]
+MF3='high':'trapmf',[0.5417 0.875 1.042 1.375]
+
+[Rules]
+3 1 3, 3 (1) : 1
+3 2 3, 3 (1) : 1
+3 3 3, 3 (1) : 1
+2 1 2, 2 (1) : 1
+2 2 2, 2 (1) : 1
+2 3 2, 2 (1) : 1
+1 1 1, 1 (1) : 1
+1 2 1, 1 (1) : 1
+1 3 1, 1 (1) : 1

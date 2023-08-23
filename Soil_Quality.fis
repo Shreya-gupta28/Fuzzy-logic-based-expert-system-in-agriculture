@@ -1,0 +1,97 @@
+[System]
+Name='Soil_Quality'
+Type='mamdani'
+Version=2.0
+NumInputs=8
+NumOutputs=1
+NumRules=11
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='pH_value'
+Range=[0 15]
+NumMFs=3
+MF1='low':'trapmf',[0 0 5 6.5]
+MF2='ideal':'trapmf',[5 6.5 8.5 10]
+MF3='high':'trapmf',[8.5 10 15 20]
+
+[Input2]
+Name='salinity_water'
+Range=[0 5]
+NumMFs=3
+MF1='ideal':'trapmf',[0 0 1.8 2]
+MF2='slight_problm':'trapmf',[1.79614494988435 1.99614494988435 2.59614494988435 2.99614494988435]
+MF3='severe':'trapmf',[2.6 3 5 5]
+
+[Input3]
+Name='TDS'
+Range=[100 3000]
+NumMFs=3
+MF1='ideal':'trapmf',[-987.9 -20.92 430 450]
+MF2='slight_problm':'trapmf',[430 450 2000 2020]
+MF3='severe':'trapmf',[2000 2020 3000 4088]
+
+[Input4]
+Name='Salinity_soil'
+Range=[0 10]
+NumMFs=3
+MF1='ideal':'trapmf',[-3.75 -0.4167 2.8 3]
+MF2='slight_problm':'trapmf',[2.8 3 3.8 8.3]
+MF3='severe':'trapmf',[3.8 8.3 10.42 13.75]
+
+[Input5]
+Name='specific_ion_toxicity'
+Range=[0 10]
+NumMFs=3
+MF1='ideal':'trapmf',[-3.75 -0.4167 2.8 3]
+MF2='slight_problm':'trapmf',[2.8 3 9 9.2]
+MF3='severe':'trapmf',[9 9.2 10.42 13.75]
+
+[Input6]
+Name='chloride'
+Range=[0 12]
+NumMFs=3
+MF1='ideal':'trapmf',[-4.5 -0.5 3.8 4]
+MF2='slight_problm':'trapmf',[3.8 4 10 10.2]
+MF3='severe':'trapmf',[10 10.2 12.5 16.5]
+
+[Input7]
+Name='Boron'
+Range=[0 5]
+NumMFs=3
+MF1='ideal':'trapmf',[-1.875 -0.2083 0.5 0.7]
+MF2='slight_problm':'trapmf',[0.5 0.7 3 3.2]
+MF3='severe':'trapmf',[3 3.2 5.208 6.875]
+
+[Input8]
+Name='Bicarbonate'
+Range=[0 7]
+NumMFs=3
+MF1='ideal':'trapmf',[-2.625 -0.2917 3.8 4]
+MF2='slight_problm':'trapmf',[3.8 4 5 6]
+MF3='severe':'trapmf',[5 6 7.292 9.625]
+
+[Output1]
+Name='Soil_Quality'
+Range=[0 1]
+NumMFs=3
+MF1='Poor':'trapmf',[-0.375 -0.04167 0.125 0.375]
+MF2='Good':'trapmf',[0.125 0.375 0.625 0.875]
+MF3='Worst':'trapmf',[0.625 0.875 1 13]
+
+[Rules]
+2 1 1 1 1 1 1 1, 2 (1) : 1
+3 3 3 3 3 3 3 3, 3 (1) : 1
+1 2 2 2 2 2 2 2, 1 (1) : 1
+2 2 1 2 2 -1 2 2, 1 (1) : 1
+1 1 1 2 -1 2 -1 -1, 1 (1) : 1
+1 2 2 2 -1 2 -1 -1, 3 (1) : 1
+2 3 2 3 3 -1 3 3, 3 (1) : 1
+3 1 1 3 3 -1 2 2, 1 (1) : 1
+3 2 2 3 3 -1 3 3, 3 (1) : 1
+2 1 2 1 1 1 1 1, 2 (1) : 1
+2 2 3 2 2 -1 2 2, -2 (1) : 1

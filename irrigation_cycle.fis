@@ -1,0 +1,65 @@
+[System]
+Name='irrigation_cycle'
+Type='mamdani'
+Version=2.0
+NumInputs=5
+NumOutputs=1
+NumRules=3
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='ground_water_level'
+Range=[10 20]
+NumMFs=3
+MF1='low':'trapmf',[10 10 13.39 15]
+MF2='medium':'trapmf',[13.39 15 16 19.38]
+MF3='high':'trapmf',[16 19.38 20 20]
+
+[Input2]
+Name='Rainfall'
+Range=[10 80]
+NumMFs=3
+MF1='low':'trapmf',[10 10 20 35]
+MF2='medium':'trapmf',[20 35 50 70]
+MF3='high':'trapmf',[50 70 80 80]
+
+[Input3]
+Name='Runoff'
+Range=[150 210]
+NumMFs=3
+MF1='low':'trapmf',[127.4 147.5 161 191]
+MF2='medium':'trapmf',[161 191 193 207]
+MF3='high':'trapmf',[193 207 210 210]
+
+[Input4]
+Name='percolation'
+Range=[800 1600]
+NumMFs=3
+MF1='low':'trapmf',[800 800 870 893]
+MF2='medium':'trapmf',[870 893 1187 1515]
+MF3='high':'trapmf',[1187 1515 1600 1600]
+
+[Input5]
+Name='Evapotranspiration'
+Range=[20 50]
+NumMFs=3
+MF1='low':'trapmf',[20 20 33 40]
+MF2='medium':'trapmf',[33 40 44 46]
+MF3='high':'trapmf',[44 46 50 50]
+
+[Output1]
+Name='Irregation_cycle'
+Range=[0 7]
+NumMFs=3
+MF1='thin':'trapmf',[-2.625 -0.2917 2 3]
+MF2='average':'trapmf',[2 3 4 5]
+MF3='thick':'trapmf',[4 5 7.292 9.625]
+
+[Rules]
+1 1 1 1 1, 1 (1) : 1
+1 2 2 2 2, 2 (1) : 1
+1 3 3 3 3, 3 (1) : 1
